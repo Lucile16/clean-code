@@ -5,6 +5,10 @@ package ex2;
  */
 public class CompteBancaire {
 
+    enum typeCompte {
+        CC, LA
+    }
+
     /**
      * solde : solde du compte
      */
@@ -23,14 +27,14 @@ public class CompteBancaire {
     /**
      * Le type vaut soit CC=Compte courant, ou soit LA=Livret A
      */
-    private String type;
+    private typeCompte type;
 
     /**
      * @param solde
      * @param decouvert
      * @param type
      */
-    public CompteBancaire(String type, double solde, double decouvert) {
+    public CompteBancaire(typeCompte type, double solde, double decouvert) {
         super();
         this.type = type;
         this.solde = solde;
@@ -46,7 +50,7 @@ public class CompteBancaire {
      * @param decouvert        représente le découvert autorisé
      * @param tauxRemuneration représente le taux de rémunération du livret A
      */
-    public CompteBancaire(String type, double solde, double decouvert, double tauxRemuneration) {
+    public CompteBancaire(typeCompte type, double solde, double decouvert, double tauxRemuneration) {
         super();
         this.type = type;
         this.solde = solde;
@@ -80,7 +84,7 @@ public class CompteBancaire {
         }
     }
 
-    public void appliquerRemuAnnuelle() {
+    public void appliquerRemunerationAnnuelle() {
         if (type.equals("LA")) {
             this.solde = solde + solde * tauxRemuneration / 100;
         }
@@ -145,7 +149,7 @@ public class CompteBancaire {
      *
      * @return the type
      */
-    public String getType() {
+    public typeCompte getType() {
         return type;
     }
 
@@ -154,7 +158,7 @@ public class CompteBancaire {
      *
      * @param type the type to set
      */
-    public void setType(String type) {
+    public void setType(typeCompte type) {
         this.type = type;
     }
 }

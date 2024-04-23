@@ -7,6 +7,8 @@ public class Caisse {
 
     private String nom;
     private List<Item> items;
+    private static final int CAPACITE_MAX_PETITS_OBJETS = 5;
+    private static final int CAPACITE_MAX_MOYENS_OBJETS = 20;
 
     /**
      * Constructeur
@@ -55,4 +57,20 @@ public class Caisse {
         this.items = items;
     }
 
+    /**
+     * Vérifie si la caisse peut accepter l'objet en fonction de son poids
+     *
+     * @param item l'objet à vérifier
+     * @return true si la caisse peut accepter l'objet, false sinon
+     */
+    public boolean peutAccepter(Item item) {
+        if (this.nom.equals("Petits objets") && item.getPoids() < CAPACITE_MAX_PETITS_OBJETS) {
+            return true;
+        } else if (this.nom.equals("Moyens objets") && item.getPoids() >= CAPACITE_MAX_PETITS_OBJETS && item.getPoids() <= CAPACITE_MAX_MOYENS_OBJETS) {
+            return true;
+        } else if (this.nom.equals("Grands objets") && item.getPoids() >= CAPACITE_MAX_MOYENS_OBJETS) {
+            return true;
+        }
+        return false;
+    }
 }
